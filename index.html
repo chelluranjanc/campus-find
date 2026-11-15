@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusFind — Lost & Found</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="brand.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="RV University Campus Find home"><img src="rv-campus-find-logo.png" alt="RV University Campus Find logo"><span>CampusFind</span></a>
+    <nav aria-label="Main navigation">
+      <button class="nav-link active" data-view="home">Browse</button>
+      <button class="nav-link" data-view="my-reports">My reports</button>
+    </nav>
+    <button class="sign-in" type="button" id="sign-in-button">Sign in with RV email</button>
+  </header>
+
+  <main id="app">
+    <section id="home-view" class="view active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">University lost & found</p>
+          <h1>Help every lost item find its way back.</h1>
+          <p>Report an item, search campus listings, and return belongings safely.</p>
+        </div>
+        <img class="hero-logo" src="rv-campus-find-logo.png" alt="RV University Campus Find logo">
+        <div class="hero-actions">
+          <button class="button primary" data-open-report="lost">I lost something</button>
+          <button class="button light" data-open-report="found">I found something</button>
+        </div>
+      </div>
+
+      <section class="search-panel" aria-label="Search reports">
+        <label class="search"><span>⌕</span><input id="search-input" type="search" placeholder="Search item, colour, location, or brand"></label>
+        <select id="type-filter" aria-label="Report type"><option value="all">Lost & found</option><option value="lost">Lost items</option><option value="found">Found items</option></select>
+        <select id="category-filter" aria-label="Item category"><option value="all">All categories</option><option>Electronics</option><option>Bags</option><option>Water bottles</option><option>Keys</option><option>Accessories</option></select>
+      </section>
+
+      <section class="content-heading">
+        <div><h2>Latest campus reports</h2><p id="result-count">6 active reports</p></div>
+        <button class="text-button" id="clear-filters">Clear filters</button>
+      </section>
+      <section id="report-list" class="report-grid" aria-live="polite"></section>
+    </section>
+
+    <section id="my-reports-view" class="view">
+      <div class="content-heading standalone"><div><p class="eyebrow">Your activity</p><h1>My reports</h1><p>Track the items you have reported or claimed.</p></div><button class="button primary" data-open-report="lost">Create report</button></div>
+      <div class="empty-state"><div class="empty-icon">⌕</div><h2>No reports yet</h2><p>When you submit a lost or found item report, it will appear here.</p></div>
+    </section>
+  </main>
+
+  <dialog id="report-dialog">
+    <form id="report-form" method="dialog">
+      <div class="dialog-heading"><div><p id="form-kicker" class="eyebrow">New report</p><h2 id="form-title">Report a lost item</h2></div><button class="close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <input id="report-type" name="type" type="hidden">
+      <div class="form-grid">
+        <label>Item name<input required name="name" placeholder="e.g. Black backpack"></label>
+        <label>Category<select required name="category"><option value="">Choose category</option><option>Electronics</option><option>Bags</option><option>Water bottles</option><option>Keys</option><option>Accessories</option><option>Other</option></select></label>
+        <label>Location<input required name="location" placeholder="e.g. Central Library"></label>
+        <label>Date<input required name="date" type="date"></label>
+      </div>
+      <label>Description<textarea required name="description" rows="4" placeholder="Add colour, brand, stickers, or other identifying features. Do not share private details publicly."></textarea></label>
+      <label class="upload">Add a photo <input name="photo" type="file" accept="image/*"><span>Optional — photos make matching easier</span></label>
+      <p class="privacy-note">For valuable items, keep one identifying detail private so the claimant can prove ownership.</p>
+      <div class="dialog-actions"><button class="button ghost" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish report</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="details-dialog"><div id="details-content"></div></dialog>
+  <dialog id="auth-dialog">
+    <form id="auth-form" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">RV University access</p><h2>Verify your student account</h2></div><button class="close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <p class="auth-copy">CampusFind is for RV University students only. Use your official university email to post, claim, or contact a finder.</p>
+      <label>RV University email<input required name="email" type="email" placeholder="name@rvuniversity.edu.in"></label>
+      <label>Phone number <span class="optional">(optional, kept private)</span><input name="phone" type="tel" placeholder="+91 98765 43210"></label>
+      <p class="privacy-note">Your phone number is never shown on public item reports. You can use private in-app messages instead.</p>
+      <div class="dialog-actions"><button class="button primary" type="submit">Send verification code</button></div>
+    </form>
+  </dialog>
+  <dialog id="chat-dialog">
+    <div class="chat-window">
+      <div class="dialog-heading"><div><p class="eyebrow">Private conversation</p><h2 id="chat-title">Chat with finder</h2><p class="chat-status">● RV student account verified · phone number hidden</p></div><button class="close" type="button" data-close-dialog aria-label="Close">×</button></div>
+      <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+      <form id="chat-form" class="chat-compose"><input id="chat-input" required placeholder="Write a message"><button class="button primary" type="submit">Send</button></form>
+    </div>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

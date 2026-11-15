@@ -1,0 +1,8 @@
+.brand{display:flex;align-items:center;gap:8px}
+.brand img{width:39px;height:39px;object-fit:contain;border-radius:9px}
+.brand span{font-size:20px;color:var(--navy)}
+.hero-logo{width:142px;height:142px;object-fit:contain;background:#fff;border-radius:16px;padding:6px}
+.sign-in{border:0;border-radius:7px;background:#e7eeff;color:#1742a4;padding:10px 13px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}.auth-copy{color:var(--muted);line-height:1.5;margin:0 0 20px}.optional{font-weight:400;color:var(--muted)}
+.chat-window{padding:28px}.chat-status{color:#0f8a63;font-size:12px;margin:7px 0 0}.chat-messages{height:260px;overflow:auto;background:#f4f7fc;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}.message{max-width:78%;padding:10px 12px;border-radius:10px;font-size:14px;line-height:1.4}.message.them{align-self:flex-start;background:#fff;color:var(--ink)}.message.me{align-self:flex-end;background:#2257d8;color:#fff}.chat-compose{display:flex;gap:9px;margin-top:12px}.chat-compose input{flex:1;border:1px solid #ccd4e1;border-radius:7px;padding:10px;font:inherit}
+@media(max-width:720px){.brand span{display:none}}
+@media(max-width:720px){.hero-logo{margin:22px 0 0;width:112px;height:112px}}
